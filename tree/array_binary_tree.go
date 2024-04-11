@@ -15,7 +15,7 @@ func (abt *arrayBinaryTree) size() int {
 }
 
 func (abt *arrayBinaryTree) val(i int) any {
-	if i < 0 || i > abt.size() {
+	if i < 0 || i >= abt.size() {
 		return nil
 	}
 	return abt.tree[i]

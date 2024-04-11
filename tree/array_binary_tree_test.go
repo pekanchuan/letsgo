@@ -27,4 +27,8 @@ func TestArrayBinaryTree(t *testing.T) {
 	fmt.Println("level order:", res)
 	res = abt.preOrder()
 	fmt.Println("pre order", res)
+	res = abt.inOrder()
+	fmt.Println("in order", res)
+	res = abt.postOrder()
+	fmt.Println("post order", res)
 }
