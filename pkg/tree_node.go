@@ -1,16 +1,18 @@
 package pkg
 
 type TreeNode struct {
-	Val   any
-	Left  *TreeNode
-	Right *TreeNode
+	Val    any
+	Height int
+	Left   *TreeNode
+	Right  *TreeNode
 }
 
 func NewTreeNode(v any) *TreeNode {
 	return &TreeNode{
-		Val:   v,
-		Left:  nil,
-		Right: nil,
+		Val:    v,
+		Height: 0,
+		Left:   nil,
+		Right:  nil,
 	}
 }
 
