@@ -89,7 +89,7 @@ func (t *aVLTree) rotate(node *TreeNode) *TreeNode {
 }
 
 func (t *aVLTree) insert(val int) {
-
+	t.root = t.insertHelper(t.root, val)
 }
 
 func (t *aVLTree) insertHelper(node *TreeNode, val int) *TreeNode {
@@ -106,4 +106,60 @@ func (t *aVLTree) insertHelper(node *TreeNode, val int) *TreeNode {
 	t.updateHeight(node)
 	node = t.rotate(node)
 	return node
+}
+
+func (t *aVLTree) remove(val int) {
+	t.root = t.removeHelper(t.root, val)
+}
+
+func (t *aVLTree) removeHelper(node *TreeNode, val int) *TreeNode {
+	if node == nil {
+		return nil
+	}
+
+	if val < node.Val.(int) {
+		node.Left = t.removeHelper(node.Left, val)
+	} else if val > node.Val.(int) {
+		node.Right = t.removeHelper(node.Right, val)
+	} else {
+		if node.Left == nil || node.Right == nil {
+			child := node.Left
+			if node.Right != nil {
+				child = node.Right
+			}
+			if child == nil {
+				return nil
+			} else {
+				node = child
+			}
+		} else {
+			temp := node.Right
+			for temp.Left != nil {
+				temp = temp.Left
+			}
+			node.Right = t.removeHelper(node.Right, temp.Val.(int))
+			node.Val = temp.Val
+		}
+	}
+	t.updateHeight(node)
+	node = t.rotate(node)
+	return node
+}
+
+func (t *aVLTree) search(val int) *TreeNode {
+	cur := t.root
+
+	for cur != nil {
+		if val == cur.Val.(int) {
+			break
+		}
+
+		if val < cur.Val.(int) {
+			cur = cur.Left
+		} else if val > cur.Val.(int) {
+			cur = cur.Right
+		}
+	}
+
+	return cur
 }
