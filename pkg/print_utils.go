@@ -30,9 +30,9 @@ func PrintMap[K comparable, V any](m map[K]V) {
 }
 
 func PrintHeap(h []any) {
-	fmt.Printf("堆的数组表示: ")
-	fmt.Printf("%v", h)
-	fmt.Printf("\n堆的树状表示: ")
+	fmt.Println("堆的数组表示: ")
+	fmt.Printf("%v\n", h)
+	fmt.Println("堆的树状表示: ")
 	root := SliceToTree(h)
 	PrintTree(root)
 }
