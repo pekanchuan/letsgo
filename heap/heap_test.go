@@ -1,6 +1,10 @@
 package heap
 
-import "testing"
+import (
+	"container/heap"
+	"fmt"
+	"testing"
+)
 
 type intHeap []any
 
@@ -32,4 +36,27 @@ func (h *intHeap) Top() any {
 
 func TestHeap(t *testing.T) {
 
+	maxHeap := &intHeap{}
+	heap.Init(maxHeap)
+
+	heap.Push(maxHeap, 1)
+	heap.Push(maxHeap, 3)
+	heap.Push(maxHeap, 2)
+	heap.Push(maxHeap, 4)
+	heap.Push(maxHeap, 5)
+
+	top := maxHeap.Top()
+	fmt.Printf("top heap element is %d\n", top)
+
+	heap.Pop(maxHeap)
+	heap.Pop(maxHeap)
+	heap.Pop(maxHeap)
+	heap.Pop(maxHeap)
+	heap.Pop(maxHeap)
+
+	size := len(*maxHeap)
+	fmt.Printf("heap elements count is %d\n", size)
+
+	isEmpty := len(*maxHeap) == 0
+	fmt.Printf("is heap empty %t\n", isEmpty)
 }
